@@ -1,0 +1,71 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div style='height: 100%; margin-left: 2%; margin-right: 2%; margin-bottom: 5%;'>
+	<div id="showme" class='showme'>
+		<div class="wrapper">
+			<div id="row0" class="hcRowBlock" style="margin-left:1%">
+				<div class="" style="width: 50%">
+					<div class="" id="errmsg" style="color: red" ></div>
+
+					<label for="displayname">Username: </label>
+					<input type="text" class="form-control" id="username" value="">
+
+					<div class="form-group">
+						<label for="displayurl">Password: </label>
+						<input type="password" class="form-control" id="password" value="">
+					</div>
+				</div>
+				<button type="button" id="loginbtn" onclick="login()" class="btn btn-default" data-dismiss="">Login</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> 
+
+				<br /><br />
+				<p class="small">(You will redirect to <b>{{ urlRedirect }}</b> upon login)</p>
+			</div>
+		</div> 
+	</div>
+</div>
+<div id="process" style="display: none" class="row center">
+	<div class="preloader-wrapper active">
+		<div class="spinner-layer spinner-red-only">
+			<div class="circle-clipper left">
+				<div class="circle"></div>
+			</div><div class="gap-patch">
+				<div class="circle"></div>
+			</div><div class="circle-clipper right">
+				<div class="circle"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+function login(){
+	var redirect = "{{ urlRedirect }}";
+	var usr = $('#username').val();
+	var pss = $('#password').val();
+	$( "#process" ).show("slow");
+	if(usr === ""|| pss === ""){
+		$('#errmsg').html('Fields cannot be blank!');
+		$('#errmsgModal').html('Fields cannot be blank!');
+		$( "#process" ).hide("slow");
+	}else{
+		$.post("/api/login",
+		{ username: usr, password: pss },
+		function(data, status){
+			//gets auth from api/login  returns 1 = success, 0 = bad
+			if (data === 1){
+				//alert(redirect);
+				window.location = redirect;
+				$( "#process" ).hide("slow");
+			}else if (data === 0){
+				//alert('auth');
+				$('#errmsg').html('Username or Password is incorrect!');
+				$('#errmsgModal').html('Username or Password is incorrect!');
+				$( "#process" ).hide("slow");
+			}
+		})
+		.fail(function(error) {alert(error.responseJSON)});
+	}
+}
+</script>
+{% endblock %}

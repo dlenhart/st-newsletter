@@ -1,0 +1,72 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+{% if user.name %}
+	<form id="form">
+		<div id="formDisplay">
+			<div class="z-depth-4" style="padding: 15px;">
+			<div class="" id="errmsg" style="color: red" ></div>
+
+			<div class="row">
+				<div class="input-field col s12 white-text">
+					<input placeholder="" name="" value="{{ user.id }}" id="id" type="hidden" class="validate">
+					<input placeholder="Type name here..." name="" value="{{ user.name }}" id="name" type="text" class="validate">
+					<label id="name" for="name">Name:</label>
+				</div>
+				<div class="input-field col s12 white-text">
+					<input placeholder="youremail@email.com" name="" value="{{ user.email }}" id="email" type="text" class="validate">
+					<label id="emailReq" for="email">Email: </label>
+				</div>
+				<div class="input-field col s12 white-text">
+					<p>Joined: <b>{{ user.joined }}</b></p>
+				</div>
+			</div>
+			<button id="submit" type="button" class="waves-effect waves-light btn">Update</button>
+			<a class="waves-effect waves-light btn" alt="Edit" href="/admin" role="button">Admin - Home</a> 
+			</div>
+		</div>
+	</form>
+{% else %}
+	<p class="center">Not a valid user to edit!</p>
+	<a class="waves-effect waves-light btn center" alt="Edit" href="/admin" role="button">< Back</a> 
+{% endif %}
+<div id="process" style="display: none" class="row center">
+	<div class="preloader-wrapper active">
+		<div class="spinner-layer spinner-red-only">
+			<div class="circle-clipper left">
+				<div class="circle"></div>
+			</div>
+			<div class="gap-patch">
+				<div class="circle"></div>
+			</div>
+			<div class="circle-clipper right">
+				<div class="circle"></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+$("#submit").click(function(){
+	var name = $('#name').val();
+	var email = $('#email').val();
+	var id = $('#id').val();
+	//spinner
+	$( "#process" ).show("slow");
+	if(name === ""|| email === ""){
+		$('#errmsg').html('Fields cannot be blank!');
+		$( "#process" ).hide("slow");
+	}else{
+		$.post("/api/updateEmail",
+			{ id: id, name: name, email: email },
+			function(data, status){
+				$( "#process" ).hide("slow");
+				Materialize.toast('Record updated!', 5000);
+				location.reload();
+		});
+	}
+});
+</script>
+
+{% endblock %}
