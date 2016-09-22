@@ -26,6 +26,11 @@ $container['HomepageController'] = function ($container) {
     return new \ST\Controller\HomepageController($container);
 };
 
+// Admin Controller
+$container['AdminController'] = function ($container) {
+    return new \ST\Controller\AdminController($container);
+};
+
 // Auth Controller
 $container['AuthController'] = function ($container) {
     return new \ST\Controller\AuthController($container);

@@ -13,19 +13,21 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "slim/slim": "^3.4",
-        "slim/php-view": "^2.0",
-        "slim/twig-view": "^2.1",
-        "slim/http-cache": "^0.3.0",
-		"slim/flash": "^0.1.0",
-		"illuminate/database": "*"
+        "slim/slim": "3.4",
+        "slim/php-view": "2.0",
+		"twig/twig": "1.18",
+        "slim/twig-view": "2.0",
+        "slim/http-cache": "0.3.0",
+		"slim/flash": "0.1.0",
+		"illuminate/database": "5.2.45"
     },
     "autoload": {
         "psr-4": {
             "ST\\": "src"
         },
 		"files": [
-			"config/lite.database.php"
+			"config/lite.database.php",
+			"config/config.php"
 		]
     }
 }

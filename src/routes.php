@@ -4,11 +4,9 @@ use Slim\Http\Response;
 
 //HOME & ADMIN Pages
 $app->get('/', 'HomepageController:home');
-$app->get('/admin', 'HomepageController:admin')->add($authenticate);
-$app->get('/admin/{page}', 'HomepageController:adminPages');
-$app->get('/admin/edit/{id}', 'HomepageController:edit')->add($authenticate);
-
-$app->get('/auth','HomepageController:test')->add($authenticate);
+$app->get('/admin', 'AdminController:admin')->add($authenticate);
+$app->get('/admin/{page}', 'AdminController:adminPages');
+$app->get('/admin/edit/{id}', 'AdminController:edit')->add($authenticate);
 
 //LOGIN
 $app->get('/login','AuthController:login');
@@ -19,5 +17,5 @@ $app->post('/api/login','AuthController:postLogin');
 
 //CRUD
 $app->post('/api/newSignup','HomepageController:addEmail');
-$app->post('/api/deleteEmail/{id}','HomepageController:deleteEmail')->add($authenticate);
-$app->post('/api/updateEmail','HomepageController:updateEmail')->add($authenticate);
+$app->post('/api/deleteEmail/{id}','AdminController:deleteEmail')->add($authenticate);
+$app->post('/api/updateEmail','AdminController:updateEmail')->add($authenticate);
