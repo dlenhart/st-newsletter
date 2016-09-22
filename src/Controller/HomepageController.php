@@ -27,9 +27,26 @@ class HomepageController extends AbstractController
 	{
 		//list all member sign ups
 		$list = New User_list;
-		$list = User_list::all();
+		//$list = User_list::all();
+		$list = User_list::all()->take(3);
 		$title = "Admin";
 		$data = array('list' => $list, 'title' => $title);
+		return $this->view->render($response, 'admin.html', $data);
+	}
+	
+	//Admin Home - List users for pagination
+	public function adminPages(Request $request, Response $response, $args)
+	{
+		$page = $request->getAttribute('page');
+		$list = New User_list;
+		//grab page parameter is offset
+		$list = User_list::skip(3 * ($page - 1))->take(3)->get();
+		
+		$pageCT = User_list::all();
+		$pages = intval(ceil(count($pageCT) / 3));
+		
+		$title = "Admin";
+		$data = array('list' => $list, 'title' => $title, 'pages' => $pages, 'page' => $page);
 		return $this->view->render($response, 'admin.html', $data);
 	}
 	

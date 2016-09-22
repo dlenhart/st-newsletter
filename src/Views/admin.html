@@ -2,7 +2,7 @@
 
 {% block content %}
 <a class="waves-effect waves-light btn" alt="Edit" href="/" role="button">Signup Page</a>
-<a class="waves-effect waves-light btn" alt="Edit" href="/admin/export" role="button">export</a>
+<!--<a class="waves-effect waves-light btn" alt="Edit" href="/admin/export" role="button">export</a>-->
 <a class="waves-effect waves-light btn" alt="Edit" href="/logout" role="button">logout</a>
 
 <div class="box_c z-depth-4"><div class="box_t white-text"><b>Registered Users:</b></div><div class="st_boxes">
@@ -17,9 +17,9 @@
 
 		<td class="center">
 
-		<a class="waves-effect waves-light btn" onclick="deleteMe('{{ item.id }}')">remove <span id="deleteSpin{{ item.id }}" class="glyphicon glyphicon-refresh spinning"></span></a>
+		<a class="waves-effect red darken-4 btn" onclick="deleteMe('{{ item.id }}')">remove <span id="deleteSpin{{ item.id }}" class="glyphicon glyphicon-refresh spinning"></span></a>
 
-		<a class="waves-effect waves-light btn" alt="Edit" data-target='#edit{{ item.id }}' href="admin/edit/{{ item.id }}" role="button">Edit</a> 
+		<a class="waves-effect waves-light btn" alt="Edit" href="admin/edit/{{ item.id }}" role="button">Edit</a> 
 
 		</td>
 	</tr>
@@ -28,10 +28,10 @@
 {% endfor %}
 </tbody>
 </table>
+pages:  {{ pages }}
 
-<!-- Add pagination at some point 
-<ul class="pagination center">
-	<li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+<!--<ul class="pagination center">
+	<li class="previous disabled><a href="#!"><i class="material-icons">chevron_left</i></a></li>
 	<li class="active"><a href="#!">1</a></li>
 	<li class="waves-effect"><a href="#!">2</a></li>
 	<li class="waves-effect"><a href="#!">3</a></li>
@@ -39,6 +39,39 @@
 	<li class="waves-effect"><a href="#!">5</a></li>
 	<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
 </ul>-->
+{% if pages > 1 %}
+	<ul class="pagination center">
+		{% set range = 5 %}
+
+		{% if page != 1 %}
+			<li class="waves-effect"><a href="1">First</a></li>
+		{% endif %}
+
+		{% set prev = page - 1 %}
+
+		{% if  page > 1 %}
+			<li class="previous disabled"><a href="{{prev}}"><i class="material-icons">chevron_left</i></a></li>
+		{% endif %}
+
+		{% for i in (page - range)..((page + range) + 1) %}
+
+			{% if (i > 0) and (i <= pages) %}
+				<li class="waves-effect"><a href="{{i}}" {% if page == i %} class="selected" {% endif %}>{{i}}</a></li>
+			{% endif %}
+
+		{% endfor %}
+
+		{% if page != pages %}
+
+			{% set  next = page + 1 %}
+
+			<li class="waves-effect"><a href="{{next}}"><i class="material-icons">chevron_right</i></a></a></li>
+			<li class="waves-effect"><a href="{{pages}}">Last</a></li>
+
+		{% endif %}
+	</ul>
+{% endif %}
+
 
 </div></div>
 <script>
