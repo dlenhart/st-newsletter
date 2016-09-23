@@ -16,13 +16,14 @@ class AdminController extends AbstractController
 	//Admin Home - List users
 	public function admin(Request $request, Response $response, $args)
 	{
-		//list all member sign ups
+		//List all member sign ups
+		//Admin root, start page var @ 1
 		$page = 1;
 		$list = New User_list;
-		
-		$list = User_list::all()->take(3);
+		//ENT_PER_PAGE setting in config/config.php
+		$list = User_list::all()->take(ENT_PER_PAGE);
 		$pageCT = User_list::all();
-		$pages = intval(ceil(count($pageCT) / 3));
+		$pages = intval(ceil(count($pageCT) / ENT_PER_PAGE));
 		
 		$title = "Admin";
 		$data = array('list' => $list, 'title' => $title, 'pages' => $pages, 'page' => $page);
@@ -35,10 +36,10 @@ class AdminController extends AbstractController
 		$page = $request->getAttribute('page');
 		$list = New User_list;
 		//grab page parameter is offset
-		$list = User_list::skip(3 * ($page - 1))->take(3)->get();
+		$list = User_list::skip(ENT_PER_PAGE * ($page - 1))->take(ENT_PER_PAGE)->get();
 		
 		$pageCT = User_list::all();
-		$pages = intval(ceil(count($pageCT) / 3));
+		$pages = intval(ceil(count($pageCT) / ENT_PER_PAGE));
 		
 		$title = "Admin";
 		$data = array('list' => $list, 'title' => $title, 'pages' => $pages, 'page' => $page);

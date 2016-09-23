@@ -5,7 +5,7 @@ use Slim\Http\Response;
 //HOME & ADMIN Pages
 $app->get('/', 'HomepageController:home');
 $app->get('/admin', 'AdminController:admin')->add($authenticate);
-$app->get('/admin/{page}', 'AdminController:adminPages');
+$app->get('/admin/{page}', 'AdminController:adminPages')->add($authenticate);
 $app->get('/admin/edit/{id}', 'AdminController:edit')->add($authenticate);
 
 //LOGIN

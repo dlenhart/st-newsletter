@@ -1,11 +1,11 @@
 st-newsletter
 ===============
 
-This is an example/demo application for having users sign up for a Newsletter.  This simply stores a users name and email in a SQLite database.  This app also has an administration panel ( with some basic authentication, passwords are stored as plain text in database ) and the usual CRUD.  The purpose of this demo was to experiment with Materialize CSS, MVC in Slim 3, and pagination in Eloquent.  Please don't use this application in your production environment.  With a little work, this would be a great starter app for someone doing something similar.
+This is an EXAMPLE/DEMO application for users to sign up for a Newsletter.  The purpose of this demo was to experiment with Materialize CSS, MVC in Slim 3, and pagination in a Twig view.  This simply stores a users name and email in a SQLite database with an administration panel and the usual create, read, update, and delete.  What's actually done with the data isn't complete ( such as emailing the list of users a email newsletter for example ) as this wasn't the purpose for this demo.  Please don't use this application in your production environment.  With a little work, this would be a great starter app for someone doing something similar.
 
 #Features
 
-Slim 3, MVC, JQuery, Materialize, SQLite, Eloquent ORM, Twig
+Slim 3, MVC, JQuery, Materialize CSS, SQLite, Eloquent ORM, Twig
 
 #Required
 
@@ -20,21 +20,21 @@ Slim 3, MVC, JQuery, Materialize, SQLite, Eloquent ORM, Twig
 
 -php >= 5.5.0
 
--slim/slim ^3.4
+-slim/slim 3.4
 
--slim/php-view ^2.0
+-slim/php-view 2.0
 
--slim/twig-view ^2.1
+-slim/twig-view 2.1
 
--slim/http-cache ^0.3.0
+-slim/http-cache 0.3.0
 
--illuminate/database *
+-illuminate/database 5.2.45
 
 #TODO
 
 1.  Fix plain text passwords in Users table.
 
-2.  Fix pagination & Twigg.
+2.  Form validation.
 
 #Install
 
@@ -53,6 +53,7 @@ Slim 3, MVC, JQuery, Materialize, SQLite, Eloquent ORM, Twig
 #Helpfull Sources
 
 https://github.com/napolux/helloslim3
+https://www.codecourse.com/library/lessons/slim-3-authentication/using-eloquent
 
 #Website
 http://snowytech.com/drewlenhart

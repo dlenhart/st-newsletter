@@ -86,7 +86,7 @@
 function deleteMe (id) {
 	$( "#process" ).show("slow");
 	if(confirm('Are you sure you want to delete this Record? This will completely remove the record from the system!')){
-		$.post("api/deleteEmail/" + id,
+		$.post("/api/deleteEmail/" + id,
 		function(data, status){
 			$( "#process" ).hide("slow");
 			Materialize.toast('Record ' + id + ' Deleted!', 5000);
