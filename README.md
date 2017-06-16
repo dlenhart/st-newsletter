@@ -3,12 +3,12 @@ st-newsletter
 
 This is an EXAMPLE/DEMO application for users to sign up for a Newsletter.  The purpose of this demo was to experiment with Materialize CSS, MVC in Slim 3, and pagination in a Twig view.  This simply stores a users name and email in a SQLite database with an administration panel and the usual create, read, update, and delete.  What's actually done with the data isn't complete ( such as emailing the list of users a email newsletter for example ) as this wasn't the purpose for this demo.  Please don't use this application in your production environment.  With a little work, this would be a great starter app for someone doing something similar.
 
-#Features
-
+Features
+----
 Slim 3, MVC, JQuery, Materialize CSS, SQLite, Eloquent ORM, Twig
 
-#Required
-
+Required
+----
 1.  PHP 5.5.0 or greater
 
 2.  PHP PDO extension
@@ -16,8 +16,8 @@ Slim 3, MVC, JQuery, Materialize CSS, SQLite, Eloquent ORM, Twig
 3.  Composer
 
 
-#Slim App Dependencies
-
+Slim App Dependencies
+----
 -php >= 5.5.0
 
 -slim/slim 3.4
@@ -30,14 +30,14 @@ Slim 3, MVC, JQuery, Materialize CSS, SQLite, Eloquent ORM, Twig
 
 -illuminate/database 5.2.45
 
-#TODO
-
+TODO
+----
 1.  Fix plain text passwords in Users table.
 
 2.  Form validation.
 
-#Install
-
+Install
+----
 1.  Download code.
 
 2.  Run **composer install** in application root.  This will install the Slim app dependencies.
@@ -50,16 +50,18 @@ Slim 3, MVC, JQuery, Materialize CSS, SQLite, Eloquent ORM, Twig
 
 6.  Navigate to **http://localhost:8000/admin** , username: admin, password: admin.
 
-#Helpfull Sources
-
+Helpfull Sources
+----
 https://github.com/napolux/helloslim3
 
 https://www.codecourse.com/library/lessons/slim-3-authentication/using-eloquent
 
-#Website
-http://snowytech.com/drewlenhart
+Website
+----
+http://www.drewlenhart.com
 
-#License
+License
+----
 MIT License
 
 Copyright (c) 2016 Drew D. Lenhart
